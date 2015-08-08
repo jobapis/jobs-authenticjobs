@@ -106,12 +106,9 @@ class AuthenticJobs extends AbstractProvider
         ];
 
         array_walk($map, function ($path, $setter) use ($payload, &$job) {
-            $index = explode('.', $path);
             try {
-                $value = static::getValue($index, $payload);
-                if ($value) {
-                    $job->$setter($value);
-                }
+                $value = static::getValue(explode('.', $path), $payload);
+                $job->$setter($value);
             } catch (\OutOfRangeException $e) {
                 // do nothing
             }
