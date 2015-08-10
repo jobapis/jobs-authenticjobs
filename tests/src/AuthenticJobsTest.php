@@ -52,6 +52,31 @@ class AuthenticJobsTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('api_key='.$this->params['key'], $url);
     }
 
+    public function testUrlContainsCityWhenProvided()
+    {
+        $city = uniqid();
+        $url = $this->client->setCity($city)->getUrl();
+
+        $this->assertContains('location='.$city, $url);
+    }
+
+    public function testUrlContainsStateWhenProvided()
+    {
+        $state = uniqid();
+        $url = $this->client->setState($state)->getUrl();
+
+        $this->assertContains('location='.$state, $url);
+    }
+
+    public function testUrlContainsCityAndStateWhenProvided()
+    {
+        $city = uniqid();
+        $state = uniqid();
+        $url = $this->client->setCity($city)->setState($state)->getUrl();
+
+        $this->assertContains('location='.urlencode($city.', '.$state), $url);
+    }
+
     public function testUrlContainsSearchParametersWhenProvided()
     {
         $client = new \ReflectionClass(AuthenticJobs::class);
