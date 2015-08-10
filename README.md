@@ -27,7 +27,7 @@ $client = new JobBrander\Jobs\Client\Provider\AuthenticJobs([
 ]);
 
 // Search for 200 job listings for 'project manager' in Chicago, IL
-$jobs = $client->setKeywords('designer') // Keywords to look for in the title or description of the job posting. Separate multiple keywords with commas. Multiple keywords will be treated as an OR
+$jobs = $client->setKeyword('designer') // Keyword(s) to look for in the title or description of the job posting. Separate multiple keywords with commas. Multiple keywords will be treated as an OR
     ->setCategory('UI Design')     // The id of a job category to limit to. See aj.categories.getList
     ->setType('Freelance')         // The id of a job type to limit to. See aj.types.getList
     ->setSort('date-posted-asc')   // Accepted values are: date-posted-desc (the default) and date-posted-asc
@@ -37,7 +37,7 @@ $jobs = $client->setKeywords('designer') // Keywords to look for in the title or
     ->setBeginDate(1438819200)     // Unix timestamp. Listings posted before this time will not be returned
     ->setEndDate(1441497600)       // Unix timestamp. Listings posted after this time will not be returned
     ->setPage(2)                   // The page of listings to return. Defaults to 1.
-    ->setPerPage(20)               // The number of listings per page. The default value is 10. The maximum value is 100.
+    ->setCount(20)               // The number of listings per page. The default value is 10. The maximum value is 100.
     ->getJobs();
 ```
 
