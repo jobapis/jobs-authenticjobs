@@ -101,22 +101,7 @@ class AuthenticJobs extends AbstractProvider
     {
         $job = new Job;
 
-        $map = [
-            'setSourceId' => '@attributes.id',
-            'setName' => '@attributes.title',
-            'setDescription' => '@attributes.description',
-            'setJobBenefits' => '@attributes.perks',
-            'setDatePostedAsString' => '@attributes.post_date',
-            'setUrl' => '@attributes.url',
-            'setOccupationalCategory' => 'category.@attributes.name',
-            'setWorkHours' => 'type.@attributes.name',
-            'setCompanyName' => 'company.@attributes.name',
-            'setCompanyLogo' => 'company.@attributes.logo',
-            'setCompanyUrl' => 'company.@attributes.url',
-            'setCompanyDescription' => 'company.@attributes.tagline',
-            'setCity' => 'company.location.@attributes.city',
-            'setCountry' => 'company.location.@attributes.country',
-        ];
+        $map = $this->getJobSetterMap();
 
         array_walk($map, function ($path, $setter) use ($payload, &$job) {
             try {
@@ -138,6 +123,31 @@ class AuthenticJobs extends AbstractProvider
     public function getFormat()
     {
         return 'xml';
+    }
+
+    /**
+     * Retrieves array that maps job setter methods to payload keys.
+     *
+     * @return array
+     */
+    protected function getJobSetterMap()
+    {
+        return [
+            'setSourceId' => '@attributes.id',
+            'setName' => '@attributes.title',
+            'setDescription' => '@attributes.description',
+            'setJobBenefits' => '@attributes.perks',
+            'setDatePostedAsString' => '@attributes.post_date',
+            'setUrl' => '@attributes.url',
+            'setOccupationalCategory' => 'category.@attributes.name',
+            'setWorkHours' => 'type.@attributes.name',
+            'setCompanyName' => 'company.@attributes.name',
+            'setCompanyLogo' => 'company.@attributes.logo',
+            'setCompanyUrl' => 'company.@attributes.url',
+            'setCompanyDescription' => 'company.@attributes.tagline',
+            'setCity' => 'company.location.@attributes.city',
+            'setCountry' => 'company.location.@attributes.country',
+        ];
     }
 
     /**
