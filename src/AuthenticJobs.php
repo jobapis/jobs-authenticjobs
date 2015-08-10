@@ -5,11 +5,25 @@ use JobBrander\Jobs\Client\Job;
 class AuthenticJobs extends AbstractProvider
 {
     /**
+     * Search city
+     *
+     * @var string
+     */
+    protected $city;
+
+    /**
      * Api key
      *
      * @var string
      */
     protected $key;
+
+    /**
+     * Search state
+     *
+     * @var string
+     */
+    protected $state;
 
     /**
      * Map of setter methods to search parameters
@@ -21,13 +35,12 @@ class AuthenticJobs extends AbstractProvider
         'setType' => 'type',
         'setSort' => 'sort',
         'setCompany' => 'company',
-        'setLocation' => 'location',
         'setTelecommuting' => 'telecommuting',
-        'setKeywords' => 'keywords',
+        'setKeyword' => 'keywords',
         'setBeginDate' => 'begin_date',
         'setEndDate' => 'end_date',
         'setPage' => 'page',
-        'setPerPage' => 'perpage',
+        'setCount' => 'perpage',
     ];
 
     /**
@@ -138,12 +151,28 @@ class AuthenticJobs extends AbstractProvider
     }
 
     /**
+     * Get combined location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        $location = array_filter([
+            ($this->city ?: null),
+            ($this->state ?: null)
+        ]);
+
+        return implode(', ', $location);
+    }
+
+    /**
      * Retrieves query string.
      *
      * @return string
      */
     protected function getQueryString()
     {
+        $this->updateQuery($this->getLocation(), 'location');
         $query = http_build_query($this->searchParameters);
 
         if ($query) {
