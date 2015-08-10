@@ -23,11 +23,11 @@ class AuthenticJobs extends AbstractProvider
         'setCompany' => 'company',
         'setLocation' => 'location',
         'setTelecommuting' => 'telecommuting',
-        'setKeywords' => 'keywords',
+        'setKeyword' => 'keywords',
         'setBeginDate' => 'begin_date',
         'setEndDate' => 'end_date',
         'setPage' => 'page',
-        'setPerPage' => 'perpage',
+        'setCount' => 'perpage',
     ];
 
     /**
