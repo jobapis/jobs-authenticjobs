@@ -7,7 +7,8 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/JobBrander/jobs-authenticjobs.svg?style=flat-square)](https://scrutinizer-ci.com/g/JobBrander/jobs-authenticjobs)
 [![Total Downloads](https://img.shields.io/packagist/dt/jobbrander/jobs-authenticjobs.svg?style=flat-square)](https://packagist.org/packages/jobbrander/jobs-authenticjobs)
 
-This package provides AuthenticJobs Jobs API support for the JobBrander's [Jobs Client](https://github.com/JobBrander/jobs-common).
+This package provides [AuthenticJobs Jobs API](https://authenticjobs.com/api/documentation)
+support for the JobBrander's [Jobs Client](https://github.com/JobBrander/jobs-common).
 
 ## Installation
 
